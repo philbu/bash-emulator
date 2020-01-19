@@ -1,0 +1,29 @@
+<pre>Welcome to CV bash, version 5.0.11(1)-release (x86_64-pc-linux-gnu)
+
+  _____  _     _ _
+ |  __ \| |   (_) |
+ | |__) | |__  _| |
+ |  ___/| '_ \| | |
+ | |    | | | | | |
+ |_|    |_| |_|_|_|
+
+
+  ____                 _
+ |  _ \               | |
+ | |_) |_   _ ___  ___| |__  _ __ ___   __ _ _ __  _ __
+ |  _ <| | | / __|/ __| '_ \| '_ ` _ \ / _` | '_ \| '_ \
+ | |_) | |_| \__ \ (__| | | | | | | | | (_| | | | | | | |
+ |____/ \__,_|___/\___|_| |_|_| |_| |_|\__,_|_| |_|_| |_|
+
+
+
+&nbsp;* Documentation:  http://cc.iiti.ac.in/docs/linuxcommands.pdf
+&nbsp;* Management:     https://landscape.canonical.com
+&nbsp;* Support:        https://ubuntu.com/advantage
+
+Last login: {{date}} from {{ip}}
+</pre>
+<pre [innerHTML]="output" *ngIf="output"></pre>
+<pre><b><span class="user">{{user}}@{{domain}}</span>:<span class="folder">{{folder}}</span></b>$</pre>
+<pre>{{command_start}}<span class="caret" *ngIf="this.command_middle == ''">&nbsp;</span><span class="caret" *ngIf="this.command_middle != ''">{{command_middle}}</span>{{command_end}}</pre>
+<input id="mobile_keyboard" class="hidden" autocapitalize="none"/>

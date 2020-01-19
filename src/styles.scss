@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Hack', monospace;
+    background-color: #232627;
+    color: #FCFCFC;
+}
+a {
+  color: #FCFCFC;
+}
+.user {
+    color: #1CDC9A;
+}
+.folder {
+    color: #368AB6;
+}
+.caret {
+    background-color: #FCFCFC;
+    color: #232627;
+}
+pre {
+    font-size: 16px;
+    display: inline;
+}
+.hidden {
+    width: 0px;
+    border: none;
+    color: transparent;
+    background-color: transparent;
+}
