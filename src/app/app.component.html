@@ -24,6 +24,6 @@
 Last login: {{date}} from {{ip}}
 </pre>
 <pre [innerHTML]="output" *ngIf="output"></pre>
-<pre><b><span class="user">{{user}}@{{domain}}</span>:<span class="folder">{{folder}}</span></b>$</pre>
+<pre><b><span class="user">{{user}}@{{domain}}</span>:<span class="folder">{{folder}}</span></b>$&nbsp;</pre>
 <pre>{{command_start}}<span class="caret" *ngIf="this.command_middle == ''">&nbsp;</span><span class="caret" *ngIf="this.command_middle != ''">{{command_middle}}</span>{{command_end}}</pre>
 <input id="mobile_keyboard" class="hidden" autocapitalize="none"/>
