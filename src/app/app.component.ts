@@ -8,6 +8,7 @@ import { WService } from './services/w.service';
 import { UptimeService } from './services/uptime.service';
 import { UnameService } from './services/uname.service';
 import { EchoService } from './services/echo.service';
+import { FilesystemService } from './files/filesystem.service';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +49,9 @@ export class AppComponent {
   ngOnInit() {
     this.ip = this.getIP();
     this.date = this.getDate();
+    FilesystemService.touch('~', this.user, 'test/test');
+    FilesystemService.mkdir('', this.user, 'test')
+    this.saveOutput(FilesystemService.ls('/'));
   }
 
   @HostListener('document:keyup', ['$event'])
