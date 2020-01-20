@@ -49,6 +49,11 @@ export class File {
     return this;
   }
 
+  setPermissions(permissions: string){
+    this.permissions = permissions;
+    return this;
+  }
+
   get() {
     return this;
   }
