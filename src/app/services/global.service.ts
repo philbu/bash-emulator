@@ -20,4 +20,20 @@ export class GlobalService {
     }
     return [true, ''];
   }
+
+  static split(command: string) {
+    // https://stackoverflow.com/questions/18893390/splitting-on-comma-outside-quotes
+    let array = command.split(/[\s]+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+    const commandName = array[0];
+    array = array.slice(1);
+    const shortFlag = array.filter(part => /^-[^-]+/.test(part));
+    const longFlag = array.filter(part => /^--[^-]*/.test(part));
+    const other = array.filter(part => /^[^-].*/.test(part));
+    return {
+      'command_name': commandName,
+      'short_flag': shortFlag,
+      'long_flag': longFlag,
+      'other': other
+    };
+  }
 }

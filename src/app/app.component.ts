@@ -8,7 +8,12 @@ import { WService } from './services/w.service';
 import { UptimeService } from './services/uptime.service';
 import { UnameService } from './services/uname.service';
 import { EchoService } from './services/echo.service';
+import { GlobalService } from './services/global.service';
+
 import { FilesystemService } from './files/filesystem.service';
+import { UserService } from './user/user.service';
+import { CommandService } from './commands/command.service';
+import { OutputService } from './output/output.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +21,9 @@ import { FilesystemService } from './files/filesystem.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  user: string = 'phil';
+  user: string = UserService.getUser().getName();
   domain: string = 'phil-buschmann.de';
-  folder: string = '~';
+  folder: string = FilesystemService.getCurrentDirectory();
 
   commands: string[] = [];
   counter: number = 0;
@@ -46,12 +51,16 @@ export class AppComponent {
     };*/
   }
 
+  getOutput(){
+    return OutputService.getOutput();
+  }
+
   ngOnInit() {
     this.ip = this.getIP();
     this.date = this.getDate();
-    FilesystemService.touch('~', this.user, 'test/test');
-    FilesystemService.mkdir('', this.user, 'test')
-    this.saveOutput(FilesystemService.ls('/'));
+    FilesystemService.mkdir(CommandService.split('mkdir test'))
+    FilesystemService.touch(CommandService.split('touch test/test'));
+    FilesystemService.ls(CommandService.split('ls -lha ~/'));
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -169,12 +178,13 @@ export class AppComponent {
   }
 
   saveCommandHistory(){
-    this.output += `<pre><b><span class="user">${this.user}@${this.domain}</span>:<span class="folder">${this.folder}</span></b>$</pre>&nbsp;<pre>${this.getCommand()}</pre><br>`;
+    OutputService.print(
+      `<pre><b><span class="user">${UserService.getUser().getName()}@${this.domain}</span>:<span class="folder">${this.folder}</span></b>$</pre>&nbsp;<pre>${this.getCommand()}</pre><br>`
+    );
   }
 
   saveOutput(output){
-    this.output += output;
-    this.output += '<br>';
+    OutputService.print(output+'<br>');
   }
 
   execute(command: string){
@@ -188,10 +198,10 @@ export class AppComponent {
     const command_name = command.split(' ')[0];
     switch(command_name){
       case 'whoami':
-        this.output += WhoamiService.command(command, this.user);
+        this.output += WhoamiService.command(command, UserService.getUser().getName());
         break;
       case 'w':
-        this.output += WService.command(command, this.user, this.ip);
+        this.output += WService.command(command, UserService.getUser().getName(), this.ip);
         break;
       case 'uptime':
         this.output += UptimeService.command(command);
