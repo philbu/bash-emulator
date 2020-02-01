@@ -74,13 +74,10 @@ export class File {
     return 1;
   }
 
-  getFileByName(name: string, onlyOne: boolean = true){
+  getFileByName(name: string){
     const regex = new RegExp(this.escapeForRegex(name)+'$');
     let filtered = this.files.filter(file => regex.test(file.name));
-    if (filtered.length > 0){
-      if (onlyOne) return filtered[0];
-      return filtered;
-    }
+    if (filtered.length > 0) return filtered[0];
     return undefined;
   }
 

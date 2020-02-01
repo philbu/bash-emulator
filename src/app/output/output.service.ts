@@ -20,4 +20,12 @@ export class OutputService {
   static getOutput(): string{
     return this.output;
   }
+
+  static clear(){
+    this.output = '';
+  }
+
+  static printWrong(commandName: string, msg: string){
+    this.println(`${commandName}: ${msg}${'\n'}Try '${commandName} --help' for more information.`);
+  }
 }

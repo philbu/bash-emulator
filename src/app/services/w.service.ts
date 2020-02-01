@@ -2,16 +2,24 @@ import { Injectable } from '@angular/core';
 import { UptimeService } from './uptime.service';
 import * as moment from 'moment';
 
+import { OutputService } from './../output/output.service';
+import { Command } from './../commands/command';
+import { CommandService } from './../commands/command.service';
+import { UserService } from './../user/user.service';
+import { IpService } from './../connection/ip.service';
+
 @Injectable()
 export class WService {
 
   constructor() { }
 
-  static command(string, user='', ip='    '){
-    let ip_space = ' '.repeat(ip.length-4);
-    return UptimeService.command('uptime')+`
-USER`+'\t'+`TTY      FROM`+ip_space+'\t'+`LOGIN@   IDLE   JCPU   PCPU WHAT
-`+user+'\t'+`pts/0    `+ip+'\t'+moment().format('hh:mm')+`    0.00s  0.02s  0.00s w`
+  static w(command: Command){
+    const ip_space = ' '.repeat(IpService.getIP().length -4);
+    UptimeService.uptime(CommandService.split('uptime'))
+    const output = `USER`+'\t'+`TTY      FROM`+ip_space+'\t'+`LOGIN@   IDLE   JCPU   PCPU WHAT
+`+UserService.getUser().getName()+'\t'+`pts/0    `+IpService.getIP()+'\t'+moment().format('hh:mm')+`    0.00s  0.02s  0.00s w`;
+    OutputService.println(output);
+    return 0;
   }
 
   static man(){

@@ -8,12 +8,15 @@ import { WService } from './services/w.service';
 import { UptimeService } from './services/uptime.service';
 import { UnameService } from './services/uname.service';
 import { EchoService } from './services/echo.service';
-import { GlobalService } from './services/global.service';
 
 import { FilesystemService } from './files/filesystem.service';
 import { UserService } from './user/user.service';
 import { CommandService } from './commands/command.service';
+import { HandlerService } from './commands/handler.service';
 import { OutputService } from './output/output.service';
+
+
+import { IpService } from './connection/ip.service';
 
 @Component({
   selector: 'app-root',
@@ -43,9 +46,9 @@ export class AppComponent {
 
   cache_command: string = '';
 
-  array: string[] = ['whoami', 'w', 'echo', 'clear'];
+  array: string[] = ['whoami', 'w', 'echo', 'clear', 'ls', 'cat', 'mkdir', 'uptime', 'uname', 'touch'];
 
-  constructor() {
+  constructor(public handlerService: HandlerService) {
     /*window.onbeforeunload = function(e) {
       return 'Ctrl + W closes the Tab instead of deleting a word. This cannot be prevented.';
     };*/
@@ -56,11 +59,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.ip = this.getIP();
+    this.ip = IpService.getIP();
     this.date = this.getDate();
-    FilesystemService.mkdir(CommandService.split('mkdir test'))
-    FilesystemService.touch(CommandService.split('touch test/test'));
-    FilesystemService.ls(CommandService.split('ls -lha ~/'));
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -137,7 +137,6 @@ export class AppComponent {
       let command = this.getCommand();
       command = command.replace(/^\s+/g, '');
       command = command.replace(/\s+$/g, '');
-      command = command.replace(/\s+/g, ' ');
       this.execute(command);
       this.overwriteCommand('');
       return;
@@ -195,7 +194,8 @@ export class AppComponent {
     this.commands.push(command);
     this.counter = this.commands.length;
     this.saveCommandHistory();
-    const command_name = command.split(' ')[0];
+    this.handlerService.execute(command);
+    /*const command_name = command.split(' ')[0];
     switch(command_name){
       case 'whoami':
         this.output += WhoamiService.command(command, UserService.getUser().getName());
@@ -219,7 +219,7 @@ export class AppComponent {
         this.output += this.getError(command_name);
         break;
     }
-    this.output += '\n';
+    this.output += '\n';*/
     // TODO
   }
 
