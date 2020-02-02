@@ -106,7 +106,7 @@ export class AppComponent {
       e.preventDefault();
       return;
     }
-    else if (e.key === 'Backspace') {
+    else if (e.key === 'Backspace' || e.key === 'Process') {
       window.scrollTo(0,document.body.scrollHeight);
       this.command_start = this.command_start.slice(0, -1);
       return;

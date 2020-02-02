@@ -7,8 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    mobile_on_click = function(ev){
+      let target = document.getElementById('mobile_keyboard');
+      if (ev.target != target){
+        target.focus();
+        target.click();
+      }
+    }
+  </script>
 </head>
-<body>
+<body onclick="mobile_on_click(event)">
   <app-root></app-root>
+  <input id="mobile_keyboard" class="hidden" autocapitalize="none"/>
 </body>
 </html>
