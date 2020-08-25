@@ -1,1 +1,14 @@
+pre {
+    display: inline;
+}
+a {
+    color: #FCFCFC;
+    text-decoration: none;
 
+    &:hover {
+        text-decoration: underline;
+    }
+}
+table {
+    margin-left: 10px;
+}
