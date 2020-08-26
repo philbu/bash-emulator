@@ -6,7 +6,7 @@ body {
     font-size: 16px;
 }
 a {
-    color: #FCFCFC;
+    color: darken(#FCFCFC, 40%);
     text-decoration: none;
 
     &:hover {

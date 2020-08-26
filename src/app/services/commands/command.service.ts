@@ -45,7 +45,6 @@ export class CommandService {
   }
 
   interpretCommand(commandString: string) {
-    this.lastCommand = commandString;
     // check for quotes
     if (this.hasQuotes(commandString)){
       this.addCommandOutput('bash-emulator: quotes are not supported yet<br />');
@@ -62,10 +61,12 @@ export class CommandService {
     // Split command into arguments and name
     let command: Command = new Command(commandString);
     if (isValidFileCommand(command)) {
+      this.lastCommand = commandString;
       return fileCommandexecute(command);
     }
 
     if (isValidSystemCommand(command)) {
+      this.lastCommand = commandString;
       return systemCommandexecute(command);
     }
 
@@ -79,6 +80,9 @@ export class CommandService {
         this.addCommandOutput(`bash: ${command.name}: command not found<br />`); 
         this.returnCode = 127;
         break;
+    }
+    if (command.name !== '!!'){
+      this.lastCommand = commandString;
     }
     return this.returnCode;
   }

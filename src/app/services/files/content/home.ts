@@ -136,17 +136,27 @@ If you are interested, here are some of my projects:<br />
 console written in typescript using the angular framework. For<br />
 more information please refer to the README.md in your home <br />
 directory or visit <a href="https://github.com/philbu/bash-emulator">https://github.com/philbu/bash-emulator</a><br />
+<br />
 * I've been developing an Android App which allows you to only<br />
 play the audio of YouTube videos. Basically, a music app with<br />
 a search, favorites, settings and a side-loader for updates. I'm<br />
 currently planning to make the code base open-source but I did<br />
 not find the time to clean up / anonymize my server address. If<br />
 you are interested in using it: <a href="https://app.sensadir.de/">https://app.sensadir.de/</a><br />
+<br />
 * Labyrinth Bash game. A labyrinth game written entirely in bash.<br />
 Maybe not the most efficient language for a game, but I was <br />
 interested what I can do with reprinting existing output in a <br />
 terminal. For more information please visit <br />
-<a href="https://github.com/philbu/bashgame">https://github.com/philbu/bashgame</a>`
+<a href="https://github.com/philbu/bashgame">https://github.com/philbu/bashgame</a><br />
+<br />
+* I did an interdisciplinary project at <a href="https://flint.gg">https://flint.gg</a> with a <br />
+colleagueof mine where we implemented modular gamecards and an <br />
+editor. We used Nuxt.js which combined Vuetify + Vue.js as <br />
+frontend with Express.js as backend. <br />
+<br />
+* I visited following practical courses: system administration <br />
+and network administration`
 
 export const readme = `<pre># Description
 
