@@ -289,6 +289,7 @@ export class CommandComponent {
       // remove last from start
       this.commandStart = this.commandStart.slice(0, -1);
       this.caretPosition = this.commandStart.length;
+      e.preventDefault();
       return;
     }
     if (this.search) {
@@ -298,11 +299,13 @@ export class CommandComponent {
     if (this.horizontalMovement.includes(e.key)) {
       // move caret/cursor
       this.moveCaret(e.key);
+      e.preventDefault();
       return;
     }
     if (this.verticalMovement.includes(e.key)) {
       // move in command history
       this.moveHistory(e.key);
+      e.preventDefault();
       return;
     }
     if (e.key === 'Delete'){
@@ -328,6 +331,7 @@ export class CommandComponent {
     }
     if (e.key === 'Tab') {
       // display autocomplete
+      e.preventDefault();
       return;
     }
     if (e.key === 'Enter') {
