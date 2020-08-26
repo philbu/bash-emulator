@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { File } from './file';
 import { UserService } from '../user/user.service';
+import { bashrc, readme, whoami } from './content/home';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +12,14 @@ export class FilesystemService {
   home: File;
   currentDir: File;
 
-  test = `
-  
-  <a>dsfds</a><br />
-  <br />
-  
-  sdfsdf
-  
-  sdsdfd`
-
   constructor(userService: UserService) {
     this.root = new File(userService, '/', true);
     let home = new File(userService, 'home', true).setParent(this.root);
     new File(userService, 'boot', true).setParent(this.root);
     this.home = new File(userService, userService.user.getName(), true).setParent(home).setOwner(userService.user);
-    new File(userService, '.bashrc').setParent(this.home).setContent(this.test);
+    new File(userService, '.bashrc').setParent(this.home).setContent(bashrc);
+    new File(userService, 'README.md').setParent(this.home).setContent(readme);
+    new File(userService, 'whoami.txt').setParent(this.home).setContent(whoami);
     this.currentDir = this.home;
   }
 
