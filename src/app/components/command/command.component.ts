@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HistoryService } from '../../services/history.service';
 import { InitService } from '../../services/init.service';
 import { CommandService } from '../../services/commands/command.service';
+import { AutocompleteService } from 'src/app/services/autocomplete.service';
 
 @Component({
   selector: 'app-command',
@@ -52,7 +53,13 @@ export class CommandComponent {
 
   commandCut = '';
 
-  constructor(private snackBar: MatSnackBar, private history: HistoryService, private commandService: CommandService) { }
+  tabCount = 0;
+
+  constructor(private snackBar: MatSnackBar,
+    private history: HistoryService, 
+    private commandService: CommandService,
+    private autocompleteService: AutocompleteService  
+  ) { }
 
   get command() {
     return this.commandStart + this.commandMiddle + this.commandEnd;
@@ -115,10 +122,10 @@ export class CommandComponent {
     this.commandService.interpretCommand(tmpCommand);
   }
 
-  addCommandToOutput() {
+  addCommandToOutput(clear: boolean = true) {
     let line = `<b><span class="user">${this.user}@${this.domain}</span>:<span class="folder">${this.directory}</span></b>$ ${this.command}<br />`;
     InitService.outputService.addOutput(line);
-    this.clearCommand();
+    if (clear) this.clearCommand();
   }
 
   checkKeyCombinations(keyCode: string, key: string) {
@@ -331,6 +338,14 @@ export class CommandComponent {
     }
     if (e.key === 'Tab') {
       // display autocomplete
+      let autocompletes = this.autocompleteService.getAutocomplete(this.commandStart);
+      if (autocompletes.length === 1) {
+        this.commandStart = this.commandStart.replace(/([^\s]+)$/, autocompletes[0]);
+      }
+      if (autocompletes.length > 1) {
+        this.addCommandToOutput(false);
+        InitService.outputService.println(autocompletes.join(' '));
+      }
       e.preventDefault();
       return;
     }
