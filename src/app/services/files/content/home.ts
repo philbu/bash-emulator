@@ -182,5 +182,5 @@ This project does emulate a basic Bash shell with some commands.
 # Added files
 
 * /
-* /home, /home/<user>, /home/<user>/(.bashrc|README.md|whoami.txt)
+* /home, /home/user, /home/user/(.bashrc|README.md|whoami.txt)
 * /boot</pre>`
