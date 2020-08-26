@@ -148,4 +148,39 @@ interested what I can do with reprinting existing output in a <br />
 terminal. For more information please visit <br />
 <a href="https://github.com/philbu/bashgame">https://github.com/philbu/bashgame</a>`
 
-export const readme = ``
+export const readme = `<pre># Description
+
+This project does emulate a basic Bash shell with some commands.
+
+# Working Commands
+
+## File commands
+
+* cat
+* cd
+* head
+* ls
+* mkdir
+* pwd
+* touch
+* tail
+* rm
+
+## System commands
+
+* !!
+* clear
+* date
+* uname
+* whoami (with description)
+
+## Other commands
+
+* echo
+* help (not original)
+
+# Added files
+
+* /
+* /home, /home/<user>, /home/<user>/(.bashrc|README.md|whoami.txt)
+* /boot</pre>`
