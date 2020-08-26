@@ -1,28 +1,4 @@
-<pre>Welcome to my personal bash emulator
-
-  _____  _     _ _
- |  __ \| |   (_) |
- | |__) | |__  _| |
- |  ___/| '_ \| | |
- | |    | | | | | |
- |_|    |_| |_|_|_|
-
-
-  ____                 _
- |  _ \               | |
- | |_) |_   _ ___  ___| |__  _ __ ___   __ _ _ __  _ __
- |  _ <| | | / __|/ __| '_ \| '_ ` _ \ / _` | '_ \| '_ \
- | |_) | |_| \__ \ (__| | | | | | | | | (_| | | | | | | |
- |____/ \__,_|___/\___|_| |_|_| |_| |_|\__,_|_| |_|_| |_|
-
-
-
-&nbsp;* Documentation:  http://cc.iiti.ac.in/docs/linuxcommands.pdf
-&nbsp;* Management:     https://landscape.canonical.com
-&nbsp;* Support:        https://ubuntu.com/advantage
-
-Last login: {{date}} from {{ip}}
-</pre>
-<pre [innerHTML]="getOutput()" *ngIf="getOutput()"></pre>
-<pre><b><span class="user">{{user}}@{{domain}}</span>:<span class="folder">{{folder}}</span></b>$&nbsp;</pre>
-<pre>{{command_start}}<span class="caret" *ngIf="this.command_middle == ''">&nbsp;</span><span class="caret" *ngIf="this.command_middle != ''">{{command_middle}}</span>{{command_end}}</pre>
+<div>
+<span id="output" [innerHTML]="output"></span>
+<app-command [user]="user" [directory]="directory"></app-command>
+</div>

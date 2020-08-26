@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Hack', monospace;
+    background-color: #232627;
+    color: #FCFCFC;
+    font-size: 16px;
+}
+a {
+    color: #FCFCFC;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+pre {
+  margin: 0;
+}
+table {
+  white-space: nowrap;
+}
+td {
+  padding-right: 20px;
+}
+.user {
+    color: #1CDC9A;
+}
+.folder {
+    color: #368AB6;
+}
+html, body { min-height: 100%; }
