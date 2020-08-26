@@ -72,6 +72,7 @@ Type \`help\` for help.
   }
 
   get output() {
+    window.scrollTo(0,document.body.scrollHeight);
     return InitService.outputService.getOutput();
   }
   
