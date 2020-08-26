@@ -36,4 +36,17 @@ export class HistoryService {
   getCommand() {
     return this.history[this.historyPosition] || this.cachedCommand;
   }
+
+  cacheCommand(command: string) {
+    this.cachedCommand = command;
+  }
+
+  searchCommand(searchTerm: string) {
+    if (searchTerm === '') {
+      return this.cachedCommand;
+    }
+    let index = this.history.findIndex(x => x.includes(searchTerm));
+    this.historyPosition = index === -1 ? this.historyPosition : index;
+    return this.history[this.historyPosition];
+  }
 }
